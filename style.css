@@ -89,7 +89,7 @@ body {
 .search-icon {
   position: absolute;
   left: 12px;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   color: var(--light-color);
 }
@@ -285,8 +285,8 @@ body {
 }
 
 .table-hover>tbody>tr:hover>* {
-  background-color: var(--primary-light-color) !important;
-  color: var(--primary-color) !important;
+  background-color: var(--primary-dark-color) !important;
+  color: var(--primary-light-color) !important;
 }
 
 .btn-primary {
@@ -304,6 +304,12 @@ body {
   color: var(--primary-dark-color);
 }
 
+.btn-primary:active {
+  background-color: var(--primary-light-color) !important;
+  border-color: var(--primary-light-color) !important;
+  color: var(--primary-dark-color) !important;
+}
+
 .btn-primary-outline {
   background-color: var(--btn-primary-outline-background);
   border: 1px solid var(--btn-primary-outline-border);
@@ -314,8 +320,8 @@ body {
 }
 
 .btn-primary-outline:hover {
-  background-color: var(--btn-primary-outline-border);
-  color: var(--btn-primary-outline-background);
+  border-color: var(--primary-light-color);
+  color: var(--primary-light-color);
 }
 
 @media (max-width: 768px) {
