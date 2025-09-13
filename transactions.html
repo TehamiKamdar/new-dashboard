@@ -42,15 +42,15 @@
     <aside class="dashboard-sidebar">
       <div class="sidebar-section">
         <div class="nav-item">
-          <a href="#" class="nav-link active">
+          <a href="index.html" class="nav-link">
             <div>
               <i class="ri-user-smile-line"></i>
               <span class="nav-text">Advertisers</span>
             </div>
           </a>
         </div>
-        <div class="nav-item has-dropdown">
-          <a href="index.html" class="nav-link">
+        <div class="nav-item has-dropdown open">
+          <a href="#" class="nav-link">
             <div>
               <i class="ri-line-chart-fill"></i>
               <span class="nav-text">Reports</span>
@@ -58,7 +58,7 @@
             <i class="chevron ri-arrow-down-s-line"></i>
           </a>
           <ul class="submenu">
-            <li><a href="transactions.html" class="nav-link"><span>Transactions</span></a></li>
+            <li><a href="transactions.html" class="nav-link active"><span>Transactions</span></a></li>
             <li><a href="performance.html" class="nav-link"><span>Daily Performance</span></a></li>
           </ul>
         </div>
@@ -117,16 +117,10 @@
       <div class="card mb-4 shadow-sm">
         <div class="card-body">
           <h3 class="card-title mb-1 ms-3">
-            Advertisers Lookup
+            Transactions
           </h3>
-          <p class="card-text ms-3" style="font-weight: 500;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Amet harum natus, neque quia sequi ipsa est quas, aliquam totam,
-            deleniti quod libero alias facere repellat fugiat magni maxime culpa dicta.
-          </p>
         </div>
       </div>
-
       <div class="table-container shadow-lg">
         <div class="d-flex justify-content-between">
           <div class="search-box">
@@ -144,12 +138,15 @@
           <table class="table table-hover table-borderless" id="myTable">
             <thead>
               <tr>
-                <th scope="col"><i class="ri-hashtag me-2"></i>ID</th>
-                <th scope="col"><i class="ri-user-line me-2"></i>Name</th>
-                <th scope="col"><i class="ri-earth-line me-2"></i>Country</th>
-                <th scope="col"><i class="ri-link me-2"></i>URL</th>
-                <th scope="col"><i class="ri-money-dollar-circle-line"></i>Commission</th>
-                <th scope="col"><i class="ri-information-line me-2"></i>Details</th>
+                <th scope="col"><i class="ri-building-line me-2"></i>Advertisers</th>
+                <th scope="col"><i class="ri-file-list-line me-2"></i>OrderID</th>
+                <th scope="col"><i class="ri-fingerprint-line me-2"></i>ClickId</th>
+                <th scope="col"><i class="ri-money-dollar-circle-line me-2"></i>Order Amount</th>
+                <th scope="col"><i class="ri-gift-line me-2"></i>Cashback</th>
+                <th scope="col"><i class="ri-calendar-line me-2"></i>Transaction Date</th>
+                <th scope="col"><i class="ri-time-line me-2"></i>Update Date</th>
+                <th scope="col"><i class="ri-checkbox-circle-line me-2"></i>Status</th>
+                <th scope="col"><i class="ri-settings-3-line me-2"></i>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -189,17 +186,48 @@
   // DataTables
   // Dummy static data (baad mein API ya Laravel loop se replace kar sakte ho)
   const data = [
-    { id: 1, name: "Amazon", country: "USA", url: "https://www.amazon.com", commission: "5%" },
-    { id: 2, name: "Daraz", country: "Pakistan", url: "https://www.daraz.pk", commission: "8%" },
-    { id: 3, name: "Flipkart", country: "India", url: "https://www.flipkart.com", commission: "7%" },
-    { id: 4, name: "eBay", country: "USA", url: "https://www.ebay.com", commission: "6%" },
-    { id: 5, name: "AliExpress", country: "China", url: "https://www.aliexpress.com", commission: "10%" },
-    { id: 6, name: "OLX", country: "Pakistan", url: "https://www.olx.com.pk", commission: "4%" },
-    { id: 7, name: "Walmart", country: "USA", url: "https://www.walmart.com", commission: "5.5%" },
-    { id: 8, name: "Noon", country: "UAE", url: "https://www.noon.com", commission: "9%" },
-    { id: 9, name: "BestBuy", country: "Canada", url: "https://www.bestbuy.ca", commission: "6.5%" },
-    { id: 10, name: "Shopee", country: "Singapore", url: "https://shopee.sg", commission: "7.5%" }
+    {
+      advertiser: "Amazon",
+      orderId: "ORD12345",
+      clickId: "CLK98765",
+      orderAmount: "$250",
+      cashback: "$12",
+      transactionDate: "2025-09-01",
+      updateDate: "2025-09-05",
+      status: "Approved"
+    },
+    {
+      advertiser: "Daraz",
+      orderId: "ORD54321",
+      clickId: "CLK12345",
+      orderAmount: "₨15,000",
+      cashback: "₨750",
+      transactionDate: "2025-09-03",
+      updateDate: "2025-09-06",
+      status: "Pending"
+    },
+    {
+      advertiser: "AliExpress",
+      orderId: "ORD67890",
+      clickId: "CLK56789",
+      orderAmount: "$99",
+      cashback: "$5",
+      transactionDate: "2025-09-07",
+      updateDate: "2025-09-09",
+      status: "Rejected"
+    },
+    {
+      advertiser: "eBay",
+      orderId: "ORD24680",
+      clickId: "CLK24680",
+      orderAmount: "$320",
+      cashback: "$16",
+      transactionDate: "2025-09-10",
+      updateDate: "2025-09-12",
+      status: "Approved"
+    }
   ];
+
 
   const rowsPerPage = 25;
   let currentPage = 1;
@@ -213,27 +241,33 @@
     let end = start + rowsPerPage;
     let pageData = data.slice(start, end);
 
-
-    if (pageData.length === 0) {
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="6" class="text-center text-primary py-4">
-          No records to display
-        </td>
-      </tr>`;
-  } else {
     pageData.forEach(row => {
       let tr = `<tr>
-                  <td>${row.id}</td>
-                  <td>${row.name}</td>
-                  <td>${row.country}</td>
-                  <td>${row.url}</td>
-                  <td>${row.commission}</td>
-                  <td><a class="text-primary-light text-decoration-none" href="${row.url}" target="_blank">View</a></td>
-                </tr>`;
+                <td>${row.advertiser}</td>
+                <td>${row.orderId}</td>
+                <td>${row.clickId}</td>
+                <td>${row.orderAmount}</td>
+                <td>${row.cashback}</td>
+                <td>${row.transactionDate}</td>
+                <td>${row.updateDate}</td>
+                <td>
+                  <span class="badge ${row.status === "Approved" ? "bg-success" :
+          row.status === "Pending" ? "bg-warning text-dark" :
+            "bg-danger"
+        }">${row.status}</span>
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-outline-info me-1">
+                    <i class="ri-eye-line"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger">
+                    <i class="ri-delete-bin-line"></i>
+                  </button>
+                </td>
+              </tr>`;
       tbody.innerHTML += tr;
     });
-  }
+
     document.getElementById("pageInfo").textContent =
       `Showing ${Math.min(end, data.length)} of ${data.length} records`;
   }

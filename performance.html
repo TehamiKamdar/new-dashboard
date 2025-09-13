@@ -42,15 +42,15 @@
     <aside class="dashboard-sidebar">
       <div class="sidebar-section">
         <div class="nav-item">
-          <a href="#" class="nav-link active">
+          <a href="index.html" class="nav-link">
             <div>
               <i class="ri-user-smile-line"></i>
               <span class="nav-text">Advertisers</span>
             </div>
           </a>
         </div>
-        <div class="nav-item has-dropdown">
-          <a href="index.html" class="nav-link">
+        <div class="nav-item has-dropdown open">
+          <a href="#" class="nav-link">
             <div>
               <i class="ri-line-chart-fill"></i>
               <span class="nav-text">Reports</span>
@@ -59,7 +59,7 @@
           </a>
           <ul class="submenu">
             <li><a href="transactions.html" class="nav-link"><span>Transactions</span></a></li>
-            <li><a href="performance.html" class="nav-link"><span>Daily Performance</span></a></li>
+            <li><a href="performance.html" class="nav-link active"><span>Daily Performance</span></a></li>
           </ul>
         </div>
 
@@ -114,19 +114,6 @@
     <div class="sidebar-overlay"></div>
     <!-- Main Content Area -->
     <main class="dashboard-main">
-      <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-          <h3 class="card-title mb-1 ms-3">
-            Advertisers Lookup
-          </h3>
-          <p class="card-text ms-3" style="font-weight: 500;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Amet harum natus, neque quia sequi ipsa est quas, aliquam totam,
-            deleniti quod libero alias facere repellat fugiat magni maxime culpa dicta.
-          </p>
-        </div>
-      </div>
-
       <div class="table-container shadow-lg">
         <div class="d-flex justify-content-between">
           <div class="search-box">
@@ -178,87 +165,8 @@
 
   <script src="script.js"></script>
   <script>
-
+    
   </script>
 </body>
 
 </html>
-<script>
-
-
-  // DataTables
-  // Dummy static data (baad mein API ya Laravel loop se replace kar sakte ho)
-  const data = [
-    { id: 1, name: "Amazon", country: "USA", url: "https://www.amazon.com", commission: "5%" },
-    { id: 2, name: "Daraz", country: "Pakistan", url: "https://www.daraz.pk", commission: "8%" },
-    { id: 3, name: "Flipkart", country: "India", url: "https://www.flipkart.com", commission: "7%" },
-    { id: 4, name: "eBay", country: "USA", url: "https://www.ebay.com", commission: "6%" },
-    { id: 5, name: "AliExpress", country: "China", url: "https://www.aliexpress.com", commission: "10%" },
-    { id: 6, name: "OLX", country: "Pakistan", url: "https://www.olx.com.pk", commission: "4%" },
-    { id: 7, name: "Walmart", country: "USA", url: "https://www.walmart.com", commission: "5.5%" },
-    { id: 8, name: "Noon", country: "UAE", url: "https://www.noon.com", commission: "9%" },
-    { id: 9, name: "BestBuy", country: "Canada", url: "https://www.bestbuy.ca", commission: "6.5%" },
-    { id: 10, name: "Shopee", country: "Singapore", url: "https://shopee.sg", commission: "7.5%" }
-  ];
-
-  const rowsPerPage = 25;
-  let currentPage = 1;
-  const totalPages = Math.ceil(data.length / rowsPerPage);
-
-  function renderTable(page) {
-    const tbody = document.querySelector("#myTable tbody");
-    tbody.innerHTML = "";
-
-    let start = (page - 1) * rowsPerPage;
-    let end = start + rowsPerPage;
-    let pageData = data.slice(start, end);
-
-
-    if (pageData.length === 0) {
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="6" class="text-center text-primary py-4">
-          No records to display
-        </td>
-      </tr>`;
-  } else {
-    pageData.forEach(row => {
-      let tr = `<tr>
-                  <td>${row.id}</td>
-                  <td>${row.name}</td>
-                  <td>${row.country}</td>
-                  <td>${row.url}</td>
-                  <td>${row.commission}</td>
-                  <td><a class="text-primary-light text-decoration-none" href="${row.url}" target="_blank">View</a></td>
-                </tr>`;
-      tbody.innerHTML += tr;
-    });
-  }
-    document.getElementById("pageInfo").textContent =
-      `Showing ${Math.min(end, data.length)} of ${data.length} records`;
-  }
-
-  // Event Listeners
-  document.getElementById("firstPage").addEventListener("click", () => {
-    currentPage = 1;
-    renderTable(currentPage);
-  });
-
-  document.getElementById("prevPage").addEventListener("click", () => {
-    if (currentPage > 1) currentPage--;
-    renderTable(currentPage);
-  });
-
-  document.getElementById("nextPage").addEventListener("click", () => {
-    if (currentPage < totalPages) currentPage++;
-    renderTable(currentPage);
-  });
-
-  document.getElementById("lastPage").addEventListener("click", () => {
-    currentPage = totalPages;
-    renderTable(currentPage);
-  });
-
-  // Initial render
-  renderTable(currentPage);
-</script>
