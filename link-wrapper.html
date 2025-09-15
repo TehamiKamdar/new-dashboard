@@ -50,7 +50,7 @@
             </div>
           </a>
         </div>
-        <div class="nav-item has-dropdown open">
+        <div class="nav-item has-dropdown">
           <a href="#" class="nav-link">
             <div>
               <i class="ri-line-chart-fill"></i>
@@ -60,7 +60,7 @@
           </a>
           <ul class="submenu">
             <li><a href="transactions.html" class="nav-link"><span>Transactions</span></a></li>
-            <li><a href="performance.html" class="nav-link active"><span>Daily Performance</span></a></li>
+            <li><a href="performance.html" class="nav-link"><span>Daily Performance</span></a></li>
           </ul>
         </div>
 
@@ -77,7 +77,7 @@
           </ul>
         </div>
 
-        <div class="nav-item has-dropdown">
+        <div class="nav-item has-dropdown open">
           <a href="#" class="nav-link">
             <div>
               <i class="ri-code-s-slash-line"></i>
@@ -86,7 +86,7 @@
             <i class="chevron ri-arrow-down-s-line"></i>
           </a>
           <ul class="submenu">
-            <li><a href="authentication.html" class="nav-link"><span>Authentication</span></a></li>
+            <li><a href="authentication.html" class="nav-link active"><span>Authentication</span></a></li>
             <li><a href="#" class="nav-link"><span>Link Wrapper</span></a></li>
             <li><a href="merchant-api.html" class="nav-link"><span>Merchant API</span></a></li>
             <li><a href="#" class="nav-link"><span>Transaction API</span></a></li>
@@ -115,58 +115,52 @@
     <div class="sidebar-overlay"></div>
     <!-- Main Content Area -->
     <main class="dashboard-main">
-      <div class="container-fluid">
-        <h1 class="title">Performance</h1>
-        <div class="card mb-4">
-          <div class="card-body">
-            <p class="card-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident qui eligendi perspiciatis voluptates deleniti aperiam minus id? Voluptas, ab non odio itaque cum, doloremque, optio excepturi iste modi amet mollitia perspiciatis iusto velit rerum aliquid esse. At, optio veniam. Numquam ipsam corporis ullam neque dolorem consectetur iusto officia quibusdam modi exercitationem. Soluta non maiores at culpa sint omnis exercitationem perspiciatis!
-            </p>
-          </div>
-        </div>
-        <div class="table-container shadow-lg">
-          <div class="d-flex justify-content-between">
-            <div class="search-box">
-              <i class="ri-search-line search-icon"></i>
-              <input type="text" class="search-input" placeholder="Search...">
-            </div>
-            <div class="d-flex gap-3">
-              <button class="btn btn-sm btn-primary-outline">
-                <i class="ri-download-line me-2"></i>
-                Export
-              </button>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table table-hover table-borderless" id="myTable">
-              <thead>
-                <tr>
-                  <th scope="col"><i class="ri-hashtag me-2"></i>ID</th>
-                  <th scope="col"><i class="ri-user-line me-2"></i>Name</th>
-                  <th scope="col"><i class="ri-earth-line me-2"></i>Country</th>
-                  <th scope="col"><i class="ri-link me-2"></i>URL</th>
-                  <th scope="col"><i class="ri-money-dollar-circle-line"></i>Commission</th>
-                  <th scope="col"><i class="ri-information-line me-2"></i>Details</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
-          <!-- Footer Pagination Controls -->
-          <div class="d-flex justify-content-between align-items-center mt-3">
-            <div>
-              <button class="btn btn-sm btn-navigation me-2" id="firstPage">⏮ First</button>
-              <button class="btn btn-sm btn-navigation" id="prevPage">◀ Prev</button>
-            </div>
-            <div id="pageInfo" class="text-primary-light">Showing 0 of 0 records</div>
-            <div>
-              <button class="btn btn-sm btn-navigation me-2" id="nextPage">Next ▶</button>
-              <button class="btn btn-sm btn-navigation" id="lastPage">Last ⏭</button>
+      <h1 class="title">Link Wrapper</h1>
+
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h6>Credentials</h6>
+          <p>Basic HTTP Authentication <br>
+            <span class="required"> Please keep your authentication securely. If an authentication has
+            already been generated, clicking <br><b>Create your authentication</b> will create a new one, causing the
+            previous
+            authentication to expire.</span>
+          </p>
+          <button class="btn btn-primary mt-2" style="box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;" data-bs-toggle="modal"
+            data-bs-target="#authenticationModal">Create your authentication</button>
+          <div class="modal fade" id="authenticationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+              <div class="modal-content text-center">
+                <div class="modal-body p-5 text-center">
+                  <h5>Would you like to create a new authentication</h5>
+                  <div class="d-flex justify-content-center gap-3 mt-4">
+                    <button class="btn btn-sm btn-primary">Yes</button>
+                    <button class="btn btn-sm btn-secondary">No</button>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h6>Documentation</h6>
+          <div class="d-flex api-texts">
+            <div class="me-5 d-flex align-items-center">
+              <i class="ri-article-line me-2"></i>
+              <a href="">Merchant API</a>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="ri-p2p-line me-2"></i>
+              <a href="">Transaction API</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
   </div>
 

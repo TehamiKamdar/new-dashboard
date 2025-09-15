@@ -18,7 +18,7 @@
   /* Buttons */
   --btn-primary-background-color: #7b36b5;
   --btn-primary-border-color: #7b36b5;
-  --btn-primary-color: #dadada;
+  --btn-primary-color: #eddfff;
 
   --btn-primary-outline-color: #7b36b5;
   --btn-primary-outline-border: #7b36b5;
@@ -45,6 +45,21 @@ body {
 
 p {
   margin-bottom: 0.35rem !important;
+}
+
+b{
+  color: #535353 !important;
+}
+
+b::before,b::after{
+  content: "\0027";
+}
+
+h6{
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Header Styles */
@@ -347,6 +362,12 @@ td {
   font-weight: 500;
 }
 
+.btn-secondary {
+  border-radius: 0.5rem;
+  padding: 0.25rem 1rem;
+  font-weight: 500;
+}
+
 .btn-primary:hover {
   background-color: var(--primary-light-color);
   border-color: var(--primary-light-color);
@@ -598,4 +619,24 @@ td {
 
 .accordion-button:focus {
   box-shadow: none;
+}
+
+.api-texts {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+}
+
+.api-texts i {
+  font-size: 20px; /* slightly bigger icon */
+  color: var(--primary-color); /* optional branding color */
+}
+
+.api-texts a {
+  color: #398fff;
+}
+
+.required::before{
+  content: '*';
+  color: #ff0000;
+  font-size: 20px;
 }

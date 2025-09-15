@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unique Dashboard Design</title>
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -114,22 +115,52 @@
     <div class="sidebar-overlay"></div>
     <!-- Main Content Area -->
     <main class="dashboard-main">
-      <div class="container-fluid">
-        <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-          <h3 class="card-title mb-1 ms-3">
-            Link Shortner
-          </h3>
-        </div>
-      </div>
+      <h1 class="title">Authentication</h1>
 
       <div class="card mb-4 shadow-sm">
         <div class="card-body">
-          <p>> Every transaction made through our link will help you earn commission</p>
-          <p>> Use our link converter to create shortened affiliate links for stores or their products. This allows you to share them anywhere with significant traffic beyond your website, earning commissions.</p>
+          <h6>Credentials</h6>
+          <p>Basic HTTP Authentication <br>
+            <span class="required"> Please keep your authentication securely. If an authentication has
+            already been generated, clicking <br><b>Create your authentication</b> will create a new one, causing the
+            previous
+            authentication to expire.</span>
+          </p>
+          <button class="btn btn-primary mt-2" style="box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;" data-bs-toggle="modal"
+            data-bs-target="#authenticationModal">Create your authentication</button>
+          <div class="modal fade" id="authenticationModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+              <div class="modal-content text-center">
+                <div class="modal-body p-5 text-center">
+                  <h5>Would you like to create a new authentication</h5>
+                  <div class="d-flex justify-content-center gap-3 mt-4">
+                    <button class="btn btn-sm btn-primary">Yes</button>
+                    <button class="btn btn-sm btn-secondary">No</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h6>Documentation</h6>
+          <div class="d-flex api-texts">
+            <div class="me-5 d-flex align-items-center">
+              <i class="ri-article-line me-2"></i>
+              <a href="">Merchant API</a>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="ri-p2p-line me-2"></i>
+              <a href="">Transaction API</a>
+            </div>
+          </div>
+        </div>
       </div>
+
     </main>
   </div>
 
