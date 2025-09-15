@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unique Dashboard Design</title>
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- RemixIcons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="brand">
+        <button class="menu-toggle">
+          <i class="ri-menu-line"></i>
+        </button>
+        <img src="logo.png" alt="" class="dashboard-logo">
+      </div>
+
+      <div class="header-actions">
+        <div class="user-profile">
+          <div class="avatar">JD</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-section">
+        <div class="nav-item">
+          <a href="#" class="nav-link">
+            <div>
+              <i class="ri-user-smile-line"></i>
+              <span class="nav-text">Advertisers</span>
+            </div>
+          </a>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="index.html" class="nav-link">
+            <div>
+              <i class="ri-line-chart-fill"></i>
+              <span class="nav-text">Reports</span>
+            </div>
+            <i class="chevron ri-arrow-down-s-line"></i>
+          </a>
+          <ul class="submenu">
+            <li><a href="transactions.html" class="nav-link"><span>Transactions</span></a></li>
+            <li><a href="performance.html" class="nav-link"><span>Daily Performance</span></a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <div>
+              <i class="ri-tools-fill"></i>
+              <span class="nav-text">Tools</span>
+            </div>
+            <i class="chevron ri-arrow-down-s-line"></i>
+          </a>
+          <ul class="submenu">
+            <li><a href="link-shortner.html" class="nav-link"><span>Link Shortner</span></a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item has-dropdown open">
+          <a href="#" class="nav-link">
+            <div>
+              <i class="ri-code-s-slash-line"></i>
+              <span class="nav-text">Dev Tools</span>
+            </div>
+            <i class="chevron ri-arrow-down-s-line"></i>
+          </a>
+          <ul class="submenu">
+            <li><a href="authentication.html" class="nav-link"><span>Authentication</span></a></li>
+            <li><a href="#" class="nav-link"><span>Link Wrapper</span></a></li>
+            <li><a href="merchant-api.html" class="nav-link"><span>Merchant API</span></a></li>
+            <li><a href="transaction-api.html" class="nav-link active"><span>Transaction API</span></a></li>
+            <li><a href="#" class="nav-link"><span>Postback Settings</span></a></li>
+          </ul>
+        </div>
+
+        <div class="nav-item">
+          <a href="#" class="nav-link">
+            <div>
+              <i class="ri-profile-line"></i>
+              <span class="nav-text">Profile</span>
+            </div>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">
+            <div>
+              <i class="ri-money-dollar-box-line"></i>
+              <span class="nav-text">Payments</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <div class="sidebar-overlay"></div>
+    <!-- Main Content Area -->
+    <main class="dashboard-main">
+      <div class="container-fluid">
+        <h1 class="title">Transaction API</h1>
+        <div class="card mb-4">
+          <div class="card-body">
+            <p class="card-text">
+              The Transaction API is the main interface for publishers wishing to know statistics about the transactions
+              on our networks. The Transaction API returns all transactions that FarCoupon works with. Information
+              exposed includes commission rate, conversion rate and domains associated with the transaction. The API can
+              also be used to conduct searches for transactions. The API uses RESTful calls and responses are formatted
+              in JSON.
+            </p>
+          </div>
+        </div>
+
+        <div class="card mb-4 endpoint-card">
+          <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h5 class="m-0">Search Merchants</h5>
+            <span class="method-badge">GET</span>
+          </div>
+          <div class="accordion m-3" id="apiAccordion">
+            <div class="accordion-item border-info">
+              <h2 class="accordion-header" id="headingGet">
+                <button class="accordion-button collapsed bg-light border-info text-dark" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#collapseGet" aria-expanded="false"
+                  aria-controls="collapseGet" style="font-family: monospace;">
+                  <span class="badge bg-info me-2">GET</span> /api/transactions <span
+                    class="ms-3 badge badge-secondary">Transactions API</span>
+                </button>
+              </h2>
+              <div id="collapseGet" class="accordion-collapse collapse" aria-labelledby="headingGet"
+                data-bs-parent="#apiAccordion">
+                <div class="accordion-body">
+                  <div class="card-body">
+                    <p class="text-muted">Returns merchants based on search criteria</p>
+
+                    <h6 class="mt-4">Endpoint</h6>
+                    <div class="code-block">
+                      <span>https://api.partner.farcoupon.com/api/stores</span>
+                    </div>
+
+                    <h6 class="mt-4">Parameters</h6>
+                    <div class="table-responsive">
+                      <table class="table table-hover param-table">
+                        <thead>
+                          <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>search</td>
+                            <td>string</td>
+                            <td>No</td>
+                            <td>Search query to find merchants by name</td>
+                          </tr>
+                          <tr>
+                            <td>cashbackType</td>
+                            <td>string</td>
+                            <td>No</td>
+                            <td>Type of cashback offered</td>
+                          </tr>
+                          <tr>
+                            <td>page</td>
+                            <td>integer</td>
+                            <td>No</td>
+                            <td>Page number for pagination</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <h6 class="mt-4">Example Request</h6>
+                    <div class="code-block">
+                      <span>curl -X 'GET' \</span><br>
+                      <span>"https://api.partner.farcoupon.com/api/stores?search=nike&cashbackType=0&page=1&size=30"
+                        \</span><br>
+                      <span>-H "accept: application/json"</span>
+                    </div>
+
+                    <h6 class="mt-4">Responses</h6>
+                    <table class="status-table">
+                      <thead>
+                        <tr>
+                          <th>Status Code</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <span class="badge badge-success">
+                              <i class="ri-checkbox-circle-line me-1"></i>200
+                            </span>
+                          </td>
+                          <td class="description">Success - The request was successful</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="badge badge-error">
+                              <i class="ri-close-circle-line me-1"></i>400
+                            </span>
+                          </td>
+                          <td class="description">Bad Request - Invalid syntax or parameters</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="badge badge-error">
+                              <i class="ri-close-circle-line me-1"></i>401
+                            </span>
+                          </td>
+                          <td class="description">Unauthorized - Authentication required</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="badge badge-error">
+                              <i class="ri-close-circle-line me-1"></i>403
+                            </span>
+                          </td>
+                          <td class="description">Forbidden - Insufficient permissions</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="badge badge-error">
+                              <i class="ri-close-circle-line me-1"></i>404
+                            </span>
+                          </td>
+                          <td class="description">Not Found - Resource does not exist</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span class="badge badge-error">
+                              <i class="ri-close-circle-line me-1"></i>500
+                            </span>
+                          </td>
+                          <td class="description">Internal Server Error - Unexpected server error</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <h6 class="mt-4">Example Response</h6>
+                    <div class="response-block">
+                      <span class="code-value">{</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;<span class="code-key">"total":</span> 1,</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;<span class="code-key">"data":</span> [</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;{</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">"id":</span>
+                        1,</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"name":</span>
+                        "Nike",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"cashbackType":</span> "org",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"domain":</span>
+                        "https://www.nike.com",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"createdAt":</span> "2024-05-10 16:26:04",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"updatedAt":</span> "2024-05-10 18:27:14",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"commissionRate":</span> "Up to 10% cash back",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"image":</span>
+                        "https://image.com/400x400",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"country":</span>
+                        "US",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"description":</span> "Store Description",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"cashbackDesc":</span> "Store cashback description",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"deepLink":</span>
+                        "https://redirect.partner.farcoupon.com/go?cid=123&mid=12345&url=https://www.nike.com",</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"urls":</span>
+                        [</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"storeId":</span> 1,</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"position":</span> 0,</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"domain":</span> "https://www.nike2.com"</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                          class="code-key">"extensionAllowed":</span> false</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;&nbsp;&nbsp;}</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;]</span><br>
+                      <span class="code-value">}</span>
+                    </div>
+
+                    <h6 class="mt-4">Error Response</h6>
+                    <div class="response-block">
+                      <span class="code-value">{</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;<span class="code-key">"data":</span> null,</span><br>
+                      <span class="code-value"> &nbsp;&nbsp;<span class="code-key">"message":</span> "Not
+                        authorized"</span><br>
+                      <span class="code-value">}</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
