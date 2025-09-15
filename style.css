@@ -450,7 +450,7 @@ td {
   color: var(--primary-dark-color);
   border-bottom: 2px solid var(--primary-light-color);
   padding-bottom: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 1.5rem !important;
 }
 
 .endpoint-card {
