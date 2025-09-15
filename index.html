@@ -114,58 +114,55 @@
     <div class="sidebar-overlay"></div>
     <!-- Main Content Area -->
     <main class="dashboard-main">
-      <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-          <h3 class="card-title mb-1 ms-3">
-            Advertisers Lookup
-          </h3>
-          <p class="card-text ms-3" style="font-weight: 500;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Amet harum natus, neque quia sequi ipsa est quas, aliquam totam,
-            deleniti quod libero alias facere repellat fugiat magni maxime culpa dicta.
-          </p>
-        </div>
-      </div>
-
-      <div class="table-container shadow-lg">
-        <div class="d-flex justify-content-between">
-          <div class="search-box">
-            <i class="ri-search-line search-icon"></i>
-            <input type="text" class="search-input" placeholder="Search...">
-          </div>
-          <div class="d-flex gap-3">
-            <button class="btn btn-sm btn-primary-outline">
-              <i class="ri-download-line me-2"></i>
-              Export
-            </button>
+      <div class="container-fluid">
+        <h1 class="title mb-4">Advertisers Lookup</h1>
+        <div class="card mb-4">
+          <div class="card-body">
+            <p class="card-text">
+              The Merchant API is the main interface for publishers wishing to know statistics about the merchants on our networks. The Merchant API returns all merchants that FarCoupon works with. Information exposed includes commission rate, conversion rate and domains associated with the merchant. The API can also be used to conduct searches for merchants. The API uses RESTful calls and responses are formatted in JSON.
+            </p>
           </div>
         </div>
-        <div class="table-responsive">
-          <table class="table table-hover table-borderless" id="myTable">
-            <thead>
-              <tr>
-                <th scope="col"><i class="ri-hashtag me-2"></i>ID</th>
-                <th scope="col"><i class="ri-user-line me-2"></i>Name</th>
-                <th scope="col"><i class="ri-earth-line me-2"></i>Country</th>
-                <th scope="col"><i class="ri-link me-2"></i>URL</th>
-                <th scope="col"><i class="ri-money-dollar-circle-line"></i>Commission</th>
-                <th scope="col"><i class="ri-information-line me-2"></i>Details</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-        <!-- Footer Pagination Controls -->
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <div>
-            <button class="btn btn-sm btn-navigation me-2" id="firstPage">⏮ First</button>
-            <button class="btn btn-sm btn-navigation" id="prevPage">◀ Prev</button>
+        <div class="table-container shadow-lg">
+          <div class="d-flex justify-content-between">
+            <div class="search-box">
+              <i class="ri-search-line search-icon"></i>
+              <input type="text" class="search-input" placeholder="Search...">
+            </div>
+            <div class="d-flex gap-3">
+              <button class="btn btn-sm btn-primary-outline">
+                <i class="ri-download-line me-2"></i>
+                Export
+              </button>
+            </div>
           </div>
-          <div id="pageInfo" class="text-primary-light">Showing 0 of 0 records</div>
-          <div>
-            <button class="btn btn-sm btn-navigation me-2" id="nextPage">Next ▶</button>
-            <button class="btn btn-sm btn-navigation" id="lastPage">Last ⏭</button>
+          <div class="table-responsive">
+            <table class="table table-hover table-borderless" id="myTable">
+              <thead>
+                <tr>
+                  <th scope="col"><i class="ri-hashtag me-2"></i>ID</th>
+                  <th scope="col"><i class="ri-user-line me-2"></i>Name</th>
+                  <th scope="col"><i class="ri-earth-line me-2"></i>Country</th>
+                  <th scope="col"><i class="ri-link me-2"></i>URL</th>
+                  <th scope="col"><i class="ri-money-dollar-circle-line"></i>Commission</th>
+                  <th scope="col"><i class="ri-information-line me-2"></i>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <!-- Footer Pagination Controls -->
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <div>
+              <button class="btn btn-sm btn-navigation me-2" id="firstPage">⏮ First</button>
+              <button class="btn btn-sm btn-navigation" id="prevPage">◀ Prev</button>
+            </div>
+            <div id="pageInfo" class="text-primary-light">Showing 0 of 0 records</div>
+            <div>
+              <button class="btn btn-sm btn-navigation me-2" id="nextPage">Next ▶</button>
+              <button class="btn btn-sm btn-navigation" id="lastPage">Last ⏭</button>
+            </div>
           </div>
         </div>
       </div>
@@ -215,15 +212,15 @@
 
 
     if (pageData.length === 0) {
-    tbody.innerHTML = `
+      tbody.innerHTML = `
       <tr>
         <td colspan="6" class="text-center text-primary py-4">
           No records to display
         </td>
       </tr>`;
-  } else {
-    pageData.forEach(row => {
-      let tr = `<tr>
+    } else {
+      pageData.forEach(row => {
+        let tr = `<tr>
                   <td>${row.id}</td>
                   <td>${row.name}</td>
                   <td>${row.country}</td>
@@ -231,9 +228,9 @@
                   <td>${row.commission}</td>
                   <td><a class="text-primary-light text-decoration-none" href="${row.url}" target="_blank">View</a></td>
                 </tr>`;
-      tbody.innerHTML += tr;
-    });
-  }
+        tbody.innerHTML += tr;
+      });
+    }
     document.getElementById("pageInfo").textContent =
       `Showing ${Math.min(end, data.length)} of ${data.length} records`;
   }
