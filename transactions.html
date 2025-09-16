@@ -128,7 +128,7 @@
         <div class="d-flex justify-content-between">
           <div class="search-box">
             <i class="ri-search-line search-icon"></i>
-            <input type="text" class="search-input" placeholder="Search...">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search by OrderID...">
           </div>
           <div class="d-flex gap-3">
             <button class="btn btn-sm btn-primary-outline">
@@ -184,11 +184,9 @@
 </body>
 
 </html>
+
 <script>
-
-
-  // DataTables
-  // Dummy static data (baad mein API ya Laravel loop se replace kar sakte ho)
+  // Dummy static data
   const data = [
     {
       advertiser: "Amazon",
@@ -232,10 +230,9 @@
     }
   ];
 
-
   const rowsPerPage = 25;
   let currentPage = 1;
-  const totalPages = Math.ceil(data.length / rowsPerPage);
+  let filteredData = [...data]; // search ke liye copy
 
   function renderTable(page) {
     const tbody = document.querySelector("#myTable tbody");
@@ -243,40 +240,61 @@
 
     let start = (page - 1) * rowsPerPage;
     let end = start + rowsPerPage;
-    let pageData = data.slice(start, end);
+    let pageData = filteredData.slice(start, end);
 
-    pageData.forEach(row => {
-      let tr = `<tr>
-                <td>${row.advertiser}</td>
-                <td>${row.orderId}</td>
-                <td>${row.clickId}</td>
-                <td>${row.orderAmount}</td>
-                <td>${row.cashback}</td>
-                <td>${row.transactionDate}</td>
-                <td>${row.updateDate}</td>
-                <td>
-                  <span class="badge ${row.status === "Approved" ? "bg-success" :
-          row.status === "Pending" ? "bg-warning text-dark" :
-            "bg-danger"
-        }">${row.status}</span>
-                </td>
-                <td>
-                  <button class="btn btn-sm btn-outline-info me-1">
-                    <i class="ri-eye-line"></i>
-                  </button>
-                  <button class="btn btn-sm btn-outline-danger">
-                    <i class="ri-delete-bin-line"></i>
-                  </button>
-                </td>
-              </tr>`;
-      tbody.innerHTML += tr;
-    });
+    if (pageData.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="9" class="text-center text-primary py-4">
+            <i class="ri-database-2-line" style="font-size: 2rem; display:block; margin-bottom:1rem;"></i>
+            No records to display
+          </td>
+        </tr>`;
+    } else {
+      pageData.forEach(row => {
+        let tr = `<tr>
+                  <td>${row.advertiser}</td>
+                  <td>${row.orderId}</td>
+                  <td>${row.clickId}</td>
+                  <td>${row.orderAmount}</td>
+                  <td>${row.cashback}</td>
+                  <td>${row.transactionDate}</td>
+                  <td>${row.updateDate}</td>
+                  <td>
+                    <span class="badge ${row.status === "Approved" ? "bg-success" :
+                      row.status === "Pending" ? "bg-warning text-dark" :
+                      "bg-danger"}">${row.status}</span>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-info me-1">
+                      <i class="ri-eye-line"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger">
+                      <i class="ri-delete-bin-line"></i>
+                    </button>
+                  </td>
+                </tr>`;
+        tbody.innerHTML += tr;
+      });
+    }
 
     document.getElementById("pageInfo").textContent =
-      `Showing ${Math.min(end, data.length)} of ${data.length} records`;
+      `Showing ${Math.min(end, filteredData.length)} of ${filteredData.length} records`;
   }
 
-  // Event Listeners
+  // Search Filter
+  document.getElementById("searchInput").addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    filteredData = data.filter(row =>
+      Object.values(row).some(val =>
+        String(val).toLowerCase().includes(query)
+      )
+    );
+    currentPage = 1;
+    renderTable(currentPage);
+  });
+
+  // Pagination Controls
   document.getElementById("firstPage").addEventListener("click", () => {
     currentPage = 1;
     renderTable(currentPage);
@@ -288,11 +306,13 @@
   });
 
   document.getElementById("nextPage").addEventListener("click", () => {
+    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
     if (currentPage < totalPages) currentPage++;
     renderTable(currentPage);
   });
 
   document.getElementById("lastPage").addEventListener("click", () => {
+    const totalPages = Math.ceil(filteredData.length / rowsPerPage);
     currentPage = totalPages;
     renderTable(currentPage);
   });
