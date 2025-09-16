@@ -86,8 +86,8 @@
             <i class="chevron ri-arrow-down-s-line"></i>
           </a>
           <ul class="submenu">
-            <li><a href="authentication.html" class="nav-link active"><span>Authentication</span></a></li>
-            <li><a href="link-wrapper.html" class="nav-link"><span>Link Wrapper</span></a></li>
+            <li><a href="authentication.html" class="nav-link"><span>Authentication</span></a></li>
+            <li><a href="link-wrapper.html" class="nav-link active"><span>Link Wrapper</span></a></li>
             <li><a href="merchant-api.html" class="nav-link"><span>Merchant API</span></a></li>
             <li><a href="transaction-api.html" class="nav-link"><span>Transaction API</span></a></li>
             <li><a href="#" class="nav-link"><span>Postback Settings</span></a></li>
@@ -117,9 +117,6 @@
     <main class="dashboard-main">
       <h1 class="title">Link Wrapper</h1>
       <div class="link-wrapper-card">
-        <h1 class="header-title">Link Wrapper</h1>
-        <h2 class="header-subtitle">FatCoupon Partner (LDL) CASSD</h2>
-
         <div class="server-info">
           <strong>Servers</strong><br>
           <span>https://redirect.partner.fatcoupon.com - Production</span>
@@ -243,6 +240,97 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- Parameter Input Section -->
+        <div class="param-input-section">
+          <h4 class="section-title">Test Parameters</h4>
+
+          <div class="input-group">
+            <span class="input-group-text">cid</span>
+            <input type="number" class="form-control" id="cidInput" placeholder="Your Company ID" value="123">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text">mid</span>
+            <input type="number" class="form-control" id="midInput" placeholder="Merchant ID" value="12345">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text">url</span>
+            <input type="text" class="form-control" id="urlInput" placeholder="URL to redirect"
+              value="https://www.nike.com">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text">clickId</span>
+            <input type="text" class="form-control" id="clickIdInput" placeholder="Your tracking ID"
+              value="YOUR_TRACK_ID">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text">subId1</span>
+            <input type="text" class="form-control" id="subId1Input" placeholder="subId1 value" value="subId1">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text">subId2</span>
+            <input type="text" class="form-control" id="subId2Input" placeholder="subId2 value" value="subId2">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text">subId3</span>
+            <input type="text" class="form-control" id="subId3Input" placeholder="subId3 value" value="subId3">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text">subId4</span>
+            <input type="text" class="form-control" id="subId4Input" placeholder="subId4 value" value="subId4">
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-text">subId5</span>
+            <input type="text" class="form-control" id="subId5Input" placeholder="subId5 value" value="subId5">
+          </div>
+        </div>
+
+        <!-- Execute Section -->
+        <div class="execute-section">
+          <button class="btn btn-primary" id="executeBtn">
+            <i class="ri-play-circle-line me-2"></i>Execute
+          </button>
+        </div>
+
+        <!-- Code Block -->
+        <div class="code-block" id="codeBlock">
+          <div>// Generated API Request URL</div>
+          <div>const url = <span class="code-value"
+              id="generatedUrl">https://redirect.partner.fatcoupon.com/go?cid=123&mid=12345&url=https://www.nike.com</span>;
+          </div>
+          <br>
+          <div>// JavaScript Fetch Example</div>
+          <div>fetch(<span class="code-value">'https://redirect.partner.fatcoupon.com/go'</span>, {</div>
+          <div>&nbsp;&nbsp;method: <span class="code-value">'GET'</span>,</div>
+          <div>&nbsp;&nbsp;headers: {</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">'Content-Type'</span>: <span
+              class="code-value">'application/json'</span>,</div>
+          <div>&nbsp;&nbsp;}</div>
+          <div>})</div>
+          <div>.then(response => response.json())</div>
+          <div>.then(data => console.log(data))</div>
+          <div>.catch(error => console.error(<span class="code-value">'Error:'</span>, error));</div>
+        </div>
+
+        <!-- Response Block -->
+        <div class="response-block" id="responseBlock" style="display: none;">
+          <div>// API Response</div>
+          <div>{</div>
+          <div>&nbsp;&nbsp;<span class="code-key">"status"</span>: <span class="code-value">"success"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="code-key">"redirectUrl"</span>: <span
+              class="code-value">"https://www.nike.com/?affiliate=12345"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="code-key">"message"</span>: <span class="code-value">"URL successfully
+              monetized"</span></div>
+          <div>}</div>
+        </div>
       </div>
     </main>
   </div>
