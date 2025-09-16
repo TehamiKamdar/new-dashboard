@@ -143,21 +143,21 @@
             <!-- Custom Tabs -->
             <ul class="nav nav-tabs custom-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                  role="tab" aria-controls="home" aria-selected="true">
+                <button class="nav-link active" id="payment-tab" data-bs-toggle="tab" data-bs-target="#paymentMethod"
+                  type="button" role="tab" aria-controls="home" aria-selected="true">
                   <i class="ri-bank-card-line"></i> Payments
                 </button>
               </li>
 
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
                   role="tab" aria-controls="profile" aria-selected="false">
                   <i class="ri-contacts-book-line"></i> Contact
                 </button>
               </li>
 
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button"
+                <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#password" type="button"
                   role="tab" aria-controls="contact" aria-selected="false">
                   <i class="ri-lock-password-line"></i> Change Password
                 </button>
@@ -166,24 +166,418 @@
             </ul>
 
             <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <h5>Home Content</h5>
-                <p>This is the home tab content. Notice how the active tab has a 4px bottom border in your primary color
-                  without any background color.</p>
-                <p>The tabs have a clean, modern design that focuses on the content rather than the navigation itself.
-                </p>
-              </div>
-              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <h5>Profile Content</h5>
-                <p>This is the profile tab content. The tabs use your specified color scheme with the primary color for
-                  the active state.</p>
-                <p>Hover over the tabs to see the subtle transition effect with the lighter primary color.</p>
+              <div class="tab-pane fade show active" id="paymentMethod" role="tabpanel" aria-labelledby="payment-tab">
+                <div class="card-body pt-0">
+                  <h3 class="section-title">Payments Method</h3>
+                  <p>Here you can add several bank accounts in different currencies. However, please keep in mind that
+                    not every bank accepts incoming payments in other currencies.</p>
+                  <div class="mt-4 d-flex gap-3 justify-content-center">
+                    <div class="payment-container">
+                      <h2>Select Payment Method</h2>
+                      <div class="payment-buttons">
+                        <button type="button" class="btn btn-primary-outline px-4 py-2" data-bs-toggle="modal"
+                          data-bs-target="#paypalModal">
+                          <i class="ri-paypal-fill me-2"></i>PayPal
+                        </button>
+                        <button type="button" class="btn btn-primary-outline px-4 py-2" data-bs-toggle="modal"
+                          data-bs-target="#payoneerModal">
+                          <i class="ri-bank-card-fill me-2"></i>Payoneer
+                        </button>
+                        <button type="button" class="btn btn-primary-outline px-4 py-2" data-bs-toggle="modal"
+                          data-bs-target="#bankTransferModal">
+                          <i class="ri-bank-fill me-2"></i>Bank Transfer
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- PayPal Modal -->
+                    <div class="modal fade" id="paypalModal" tabindex="-1" aria-labelledby="paypalModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="paypalModalLabel"><i class="ri-paypal-fill me-2"></i>PayPal
+                              Payment Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="text-center">
+                              <div class="payment-icon">
+                                <i class="ri-paypal-fill"></i>
+                              </div>
+                              <p class="mb-4">Enter your PayPal account details to receive payments</p>
+                            </div>
+
+                            <form>
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="paypalEmail" class="form-label">PayPal Email Address *</label>
+                                  <input type="email" class="form-control" id="paypalEmail"
+                                    placeholder="your.email@example.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="paypalConfirmEmail" class="form-label">Confirm Email Address *</label>
+                                  <input type="email" class="form-control" id="paypalConfirmEmail"
+                                    placeholder="Confirm your email" required>
+                                </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="paypalFirstName" class="form-label">First Name *</label>
+                                  <input type="text" class="form-control" id="paypalFirstName" placeholder="John"
+                                    required>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="paypalLastName" class="form-label">Last Name *</label>
+                                  <input type="text" class="form-control" id="paypalLastName" placeholder="Doe"
+                                    required>
+                                </div>
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="paypalCurrency" class="form-label">Preferred Currency *</label>
+                                <select class="form-select" id="paypalCurrency" required>
+                                  <option value="">Select currency</option>
+                                  <option value="USD">USD - US Dollar</option>
+                                  <option value="EUR">EUR - Euro</option>
+                                  <option value="GBP">GBP - British Pound</option>
+                                  <option value="CAD">CAD - Canadian Dollar</option>
+                                  <option value="AUD">AUD - Australian Dollar</option>
+                                </select>
+                              </div>
+
+                              <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="paypalTerms" required>
+                                <label class="form-check-label" for="paypalTerms">I confirm that this PayPal account
+                                  belongs to me and I have authority to use it</label>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn submit-btn">Save PayPal Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Payoneer Modal -->
+                    <div class="modal fade" id="payoneerModal" tabindex="-1" aria-labelledby="payoneerModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="payoneerModalLabel"><i
+                                class="ri-bank-card-fill me-2"></i>Payoneer Payment Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="text-center">
+                              <div class="payment-icon">
+                                <i class="ri-bank-card-fill"></i>
+                              </div>
+                              <p class="mb-4">Enter your Payoneer account details to receive payments</p>
+                            </div>
+
+                            <form>
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="payoneerEmail" class="form-label">Payoneer Account Email *</label>
+                                  <input type="email" class="form-control" id="payoneerEmail"
+                                    placeholder="your.email@example.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="payoneerId" class="form-label">Payoneer ID</label>
+                                  <input type="text" class="form-control" id="payoneerId" placeholder="Optional">
+                                </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="payoneerFirstName" class="form-label">First Name *</label>
+                                  <input type="text" class="form-control" id="payoneerFirstName" placeholder="John"
+                                    required>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="payoneerLastName" class="form-label">Last Name *</label>
+                                  <input type="text" class="form-control" id="payoneerLastName" placeholder="Doe"
+                                    required>
+                                </div>
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="payoneerMethod" class="form-label">Payment Method *</label>
+                                <select class="form-select" id="payoneerMethod" required>
+                                  <option value="">Select method</option>
+                                  <option value="prepaid-card">Prepaid MasterCard</option>
+                                  <option value="bank-transfer">Global Bank Transfer</option>
+                                  <option value="local-transfer">Local Bank Transfer</option>
+                                </select>
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="payoneerCurrency" class="form-label">Preferred Currency *</label>
+                                <select class="form-select" id="payoneerCurrency" required>
+                                  <option value="">Select currency</option>
+                                  <option value="USD">USD - US Dollar</option>
+                                  <option value="EUR">EUR - Euro</option>
+                                  <option value="GBP">GBP - British Pound</option>
+                                  <option value="JPY">JPY - Japanese Yen</option>
+                                  <option value="CAD">CAD - Canadian Dollar</option>
+                                </select>
+                              </div>
+
+                              <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="payoneerTerms" required>
+                                <label class="form-check-label" for="payoneerTerms">I have read and agree to Payoneer's
+                                  terms of service</label>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn submit-btn">Save Payoneer Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Bank Transfer Modal -->
+                    <div class="modal fade" id="bankTransferModal" tabindex="-1"
+                      aria-labelledby="bankTransferModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="bankTransferModalLabel"><i class="ri-bank-fill me-2"></i>Bank
+                              Transfer Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="text-center">
+                              <div class="payment-icon">
+                                <i class="ri-bank-fill"></i>
+                              </div>
+                              <p class="mb-4">Enter your bank account details to receive direct transfers</p>
+                            </div>
+
+                            <form>
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="accountHolder" class="form-label">Account Holder Name *</label>
+                                  <input type="text" class="form-control" id="accountHolder" placeholder="John Doe"
+                                    required>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="accountNumber" class="form-label">Account Number *</label>
+                                  <input type="text" class="form-control" id="accountNumber"
+                                    placeholder="XXXX XXXX XXXX XXXX" required>
+                                </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="bankName" class="form-label">Bank Name *</label>
+                                  <input type="text" class="form-control" id="bankName" placeholder="Bank Name"
+                                    required>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="routingNumber" class="form-label">Routing Number/Sort Code *</label>
+                                  <input type="text" class="form-control" id="routingNumber" placeholder="XXXXXXX"
+                                    required>
+                                </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="bankAddress" class="form-label">Bank Address</label>
+                                  <input type="text" class="form-control" id="bankAddress" placeholder="Street Address">
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="bankCountry" class="form-label">Bank Country *</label>
+                                  <select class="form-select" id="bankCountry" required>
+                                    <option value="">Select country</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="DE">Germany</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <label for="swiftCode" class="form-label">SWIFT/BIC Code *</label>
+                                  <input type="text" class="form-control" id="swiftCode" placeholder="ABCDEFXX"
+                                    required>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="iban" class="form-label">IBAN (International Transfers)</label>
+                                  <input type="text" class="form-control" id="iban" placeholder="IBAN Number">
+                                </div>
+                              </div>
+
+                              <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="bankTerms" required>
+                                <label class="form-check-label" for="bankTerms">I confirm that these bank details are
+                                  correct</label>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn submit-btn">Save Bank Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                <h5>Contact Content</h5>
-                <p>This is the contact tab content. The design is fully responsive and will work on all screen sizes.
-                </p>
-                <p>The tabs have no background color, only a bottom border when active or on hover.</p>
+                <div class="card-body">
+                  <form>
+                    <h3 class="section-title">Contact Details</h3>
+                    <!-- Contact Information Section -->
+                    <div class="form-section">
+                      <div class="row mb-3">
+                        <div class="col-md-12">
+                          <label for="companyName" class="form-label">Company Name</label>
+                          <input type="text" class="form-control" id="companyName">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <label for="firstName" class="form-label">First Name</label>
+                          <input type="text" class="form-control" id="firstName" placeholder="-">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="lastName" class="form-label">Last Name</label>
+                          <input type="text" class="form-control" id="lastName" placeholder="-">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <label for="telephone" class="form-label">Telephone Number</label>
+                          <input type="tel" class="form-control" id="telephone" placeholder="-">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="email" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="email" value="support@digintrack.com">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Address Information Section -->
+                    <h3 class="section-title">Address Information</h3>
+                    <p class="section-description">Necessary for payments</p>
+
+                    <div class="form-section">
+                      <div class="row mb-3">
+                        <div class="col-md-12">
+                          <label for="streetAddress" class="form-label">Street Address</label>
+                          <input type="text" class="form-control" id="streetAddress" placeholder="-">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <label for="city" class="form-label">City</label>
+                          <input type="text" class="form-control" id="city" placeholder="-">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="region" class="form-label">Region</label>
+                          <input type="text" class="form-control" id="region" placeholder="-">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <label for="postalCode" class="form-label">Postal Code/Zip</label>
+                          <input type="text" class="form-control" id="postalCode" placeholder="-">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="country" class="form-label">Country</label>
+                          <select class="form-control" id="country">
+                            <option value="">Select Country</option>
+                            <option value="US">United States</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="CA">Canada</option>
+                            <option value="AU">Australia</option>
+                            <option value="DE">Germany</option>
+                            <option value="FR">France</option>
+                            <option value="IN">India</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button type="submit" class="btn submit-btn">Update Contact Information</button>
+                  </form>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+                <div class="row justify-content-center">
+                  <div class="col-12 col-md-8"> <!-- col-8 width as requested -->
+                    <div class="password-container">
+                      <h3 class="section-title">Change Password</h3>
+
+                      <form id="passwordForm">
+                        <div class="mb-4">
+                          <label for="currentPassword" class="form-label">Current Password</label>
+                          <div class="input-group">
+                            <input type="password" class="form-control" id="currentPassword"
+                              placeholder="Enter your current password" required>
+                            <button type="button" class="password-toggle" id="toggleCurrentPassword">
+                              <i class="ri-eye-off-line"></i>
+                            </button>
+                          </div>
+                        </div>
+
+                        <div class="mb-4">
+                          <label for="newPassword" class="form-label">New Password</label>
+                          <div class="input-group">
+                            <input type="password" class="form-control" id="newPassword"
+                              placeholder="Create a new password" required>
+                            <button type="button" class="password-toggle" id="toggleNewPassword">
+                              <i class="ri-eye-off-line"></i>
+                            </button>
+                          </div>
+
+                          <div class="password-strength">
+                            <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                          </div>
+                          <div class="password-feedback" id="passwordFeedback"></div>
+
+                          <ul class="requirement-list">
+                            <li id="lengthReq" class="requirement-unmet">At least 8 characters</li>
+                            <li id="uppercaseReq" class="requirement-unmet">One uppercase letter</li>
+                            <li id="lowercaseReq" class="requirement-unmet">One lowercase letter</li>
+                            <li id="numberReq" class="requirement-unmet">One number</li>
+                            <li id="specialReq" class="requirement-unmet">One special character</li>
+                          </ul>
+                        </div>
+
+                        <div class="mb-4">
+                          <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                          <div class="input-group">
+                            <input type="password" class="form-control" id="confirmPassword"
+                              placeholder="Confirm your new password" required>
+                            <button type="button" class="password-toggle" id="toggleConfirmPassword">
+                              <i class="ri-eye-off-line"></i>
+                            </button>
+                          </div>
+                          <div class="password-feedback" id="confirmFeedback"></div>
+                        </div>
+
+                        <button type="submit" class="btn submit-btn">Update Password</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -199,7 +593,168 @@
 
   <script src="script.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Password visibility toggles
+      const toggleCurrentPassword = document.getElementById('toggleCurrentPassword');
+      const toggleNewPassword = document.getElementById('toggleNewPassword');
+      const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+      const currentPassword = document.getElementById('currentPassword');
+      const newPassword = document.getElementById('newPassword');
+      const confirmPassword = document.getElementById('confirmPassword');
 
+      toggleCurrentPassword.addEventListener('click', function () {
+        const type = currentPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        currentPassword.setAttribute('type', type);
+        this.innerHTML = type === 'password' ? '<i class="ri-eye-off-line"></i>' : '<i class="ri-eye-line"></i>';
+      });
+
+      toggleNewPassword.addEventListener('click', function () {
+        const type = newPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        newPassword.setAttribute('type', type);
+        this.innerHTML = type === 'password' ? '<i class="ri-eye-off-line"></i>' : '<i class="ri-eye-line"></i>';
+      });
+
+      toggleConfirmPassword.addEventListener('click', function () {
+        const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmPassword.setAttribute('type', type);
+        this.innerHTML = type === 'password' ? '<i class="ri-eye-off-line"></i>' : '<i class="ri-eye-line"></i>';
+      });
+
+      // Password strength checker
+      newPassword.addEventListener('input', function () {
+        checkPasswordStrength(this.value);
+      });
+
+      // Confirm password validation
+      confirmPassword.addEventListener('input', function () {
+        validatePasswordMatch();
+      });
+
+      // Form submission
+      document.getElementById('passwordForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (validateForm()) {
+          // Simulate form submission
+          alert('Password successfully changed!');
+          this.reset();
+          resetValidation();
+        }
+      });
+
+      function checkPasswordStrength(password) {
+        const strengthBar = document.getElementById('passwordStrengthBar');
+        const feedback = document.getElementById('passwordFeedback');
+
+        // Reset classes
+        strengthBar.className = 'password-strength-bar';
+
+        // Check password requirements
+        const hasLength = password.length >= 8;
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+
+        // Update requirement indicators
+        document.getElementById('lengthReq').className = hasLength ? 'requirement-met' : 'requirement-unmet';
+        document.getElementById('uppercaseReq').className = hasUppercase ? 'requirement-met' : 'requirement-unmet';
+        document.getElementById('lowercaseReq').className = hasLowercase ? 'requirement-met' : 'requirement-unmet';
+        document.getElementById('numberReq').className = hasNumber ? 'requirement-met' : 'requirement-unmet';
+        document.getElementById('specialReq').className = hasSpecial ? 'requirement-met' : 'requirement-unmet';
+
+        // Calculate strength
+        let strength = 0;
+        if (hasLength) strength++;
+        if (hasUppercase) strength++;
+        if (hasLowercase) strength++;
+        if (hasNumber) strength++;
+        if (hasSpecial) strength++;
+
+        // Update strength bar and feedback
+        if (password.length === 0) {
+          strengthBar.style.width = '0%';
+          feedback.textContent = '';
+        } else if (strength <= 2) {
+          strengthBar.className = 'password-strength-bar strength-weak';
+          strengthBar.style.width = '30%'; // yahan width set karein
+          feedback.textContent = 'Weak password';
+          feedback.style.color = 'var(--error-color)';
+        } else if (strength <= 4) {
+          strengthBar.className = 'password-strength-bar strength-medium';
+          strengthBar.style.width = '60%'; // yahan bhi width
+          feedback.textContent = 'Medium strength password';
+          feedback.style.color = 'var(--warning-color)';
+        } else {
+          strengthBar.className = 'password-strength-bar strength-strong';
+          strengthBar.style.width = '100%'; // strong ka full bar
+          feedback.textContent = 'Strong password';
+          feedback.style.color = 'var(--success-color)';
+        }
+
+
+        validatePasswordMatch();
+      }
+
+      function validatePasswordMatch() {
+        const confirmFeedback = document.getElementById('confirmFeedback');
+        const newPasswordValue = newPassword.value;
+        const confirmPasswordValue = confirmPassword.value;
+
+        if (confirmPasswordValue.length === 0) {
+          confirmFeedback.textContent = '';
+        } else if (newPasswordValue !== confirmPasswordValue) {
+          confirmFeedback.textContent = 'Passwords do not match';
+          confirmFeedback.style.color = 'var(--error-color)';
+        } else {
+          confirmFeedback.textContent = 'Passwords match';
+          confirmFeedback.style.color = 'var(--success-color)';
+        }
+      }
+
+      function validateForm() {
+        const currentPasswordValue = currentPassword.value;
+        const newPasswordValue = newPassword.value;
+        const confirmPasswordValue = confirmPassword.value;
+
+        if (!currentPasswordValue) {
+          alert('Please enter your current password');
+          return false;
+        }
+
+        if (newPasswordValue !== confirmPasswordValue) {
+          alert('New passwords do not match');
+          return false;
+        }
+
+        // Check if new password meets all requirements
+        const hasLength = newPasswordValue.length >= 8;
+        const hasUppercase = /[A-Z]/.test(newPasswordValue);
+        const hasLowercase = /[a-z]/.test(newPasswordValue);
+        const hasNumber = /[0-9]/.test(newPasswordValue);
+        const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(newPasswordValue);
+
+        if (!(hasLength && hasUppercase && hasLowercase && hasNumber && hasSpecial)) {
+          alert('New password does not meet all requirements');
+          return false;
+        }
+
+        return true;
+      }
+
+      function resetValidation() {
+        document.getElementById('passwordStrengthBar').className = 'password-strength-bar';
+        document.getElementById('passwordStrengthBar').style.width = '0%';
+        document.getElementById('passwordFeedback').textContent = '';
+        document.getElementById('confirmFeedback').textContent = '';
+
+        // Reset requirement indicators
+        const requirements = ['lengthReq', 'uppercaseReq', 'lowercaseReq', 'numberReq', 'specialReq'];
+        requirements.forEach(req => {
+          document.getElementById(req).className = 'requirement-unmet';
+        });
+      }
+    });
   </script>
 </body>
 
