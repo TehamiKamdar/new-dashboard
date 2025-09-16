@@ -47,6 +47,14 @@ p {
   margin-bottom: 0.35rem !important;
 }
 
+p::after {
+  content: '.';
+}
+
+p.info::before{
+  content: ">";
+}
+
 b {
   color: #535353 !important;
 }
@@ -113,7 +121,7 @@ h6 {
 .search-icon {
   position: absolute;
   left: 12px;
-  top: 40%;
+  top: 35%;
   transform: translateY(-50%);
   color: var(--light-color);
 }
