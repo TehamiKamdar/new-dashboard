@@ -459,13 +459,6 @@ td {
   cursor: pointer;
 }
 
-.title {
-  color: var(--primary-dark-color);
-  border-bottom: 2px solid var(--primary-light-color);
-  padding-bottom: 10px;
-  margin-bottom: 1.5rem !important;
-}
-
 .endpoint-card {
   border-left: 4px solid var(--primary-color);
   border-radius: 5px;
@@ -983,10 +976,12 @@ td {
   margin-bottom: 2rem;
 }
 
-.header-title {
+.title {
   color: var(--primary-dark-color);
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-light-color);
+  padding-bottom: 10px;
+  margin-bottom: 1.5rem !important;
 }
 
 .header-subtitle {
@@ -1117,4 +1112,69 @@ td {
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--primary-light-color);
+        }
+        
+        .postback-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .header-subtitle {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-section {
+            background-color: var(--primary-light-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-section p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-section code {
+            background-color: white;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+        }
+        
+        .fields-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        
+        .fields-table th {
+            background-color: var(--primary-light-color);
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .fields-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+        
+        .field-name {
+            font-family: monospace;
+            background-color: #f8f9fa;
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            color: var(--primary-dark-color);
+        }
+        
+        .field-description {
+            color: #495057;
         }

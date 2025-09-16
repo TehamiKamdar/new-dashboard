@@ -87,10 +87,10 @@
           </a>
           <ul class="submenu">
             <li><a href="authentication.html" class="nav-link"><span>Authentication</span></a></li>
-            <li><a href="link-wrapper.html" class="nav-link active"><span>Link Wrapper</span></a></li>
+            <li><a href="link-wrapper.html" class="nav-link"><span>Link Wrapper</span></a></li>
             <li><a href="merchant-api.html" class="nav-link"><span>Merchant API</span></a></li>
             <li><a href="transaction-api.html" class="nav-link"><span>Transaction API</span></a></li>
-            <li><a href="postback-settings.html" class="nav-link"><span>Postback Settings</span></a></li>
+            <li><a href="postback-settings.html" class="nav-link active"><span>Postback Settings</span></a></li>
           </ul>
         </div>
 
@@ -115,221 +115,114 @@
     <div class="sidebar-overlay"></div>
     <!-- Main Content Area -->
     <main class="dashboard-main">
-      <h1 class="title">Link Wrapper</h1>
-      <div class="link-wrapper-card">
-        <div class="server-info">
-          <strong>Servers</strong><br>
-          <span>https://redirect.partner.fatcoupon.com - Production</span>
-          <button class="btn btn-outline-primary btn-sm ms-2">Authorize</button>
+      <h1 class="title">Postback Settings</h1>
+      <div class="postback-card">
+        <div class="info-section">
+          <h4>Optional URL Parameters</h4>
+          <p>The URL can include the value of various parameters. Simply include the placeholder for the parameters in
+            the URL. Prior to calling the URL, the placeholders for the parameters will be replaced with their values.
+          </p>
+          <p>For example if you wanted to populate the program ID in the URL you would set it up as follows:
+            <code>https://www.domain.com?publisherId={publisherId}</code>. When the URL is called,
+            <code>{publisherId}</code> would be populated with the value provided.</p>
         </div>
 
-        <h3 class="mt-4 mb-3">default</h3>
+        <div class="example-section">
+          <h5 class="example-title">Example Implementation</h5>
+          <div class="code-block">
+            <div class="code-comment">// Your postback URL with parameters</div>
+            <div>https://yourdomain.com/tracking?<span class="code-key">pid</span>=<span
+                class="code-value">{publisherId}</span>&<span class="code-key">tid</span>=<span
+                class="code-value">{transactionId}</span>&<span class="code-key">amt</span>=<span
+                class="code-value">{amount}</span>&<span class="code-key">checksum</span>=<span
+                class="code-value">{checksum}</span></div>
+          </div>
+        </div>
 
-        <table class="endpoint-table">
+        <h3 class="mt-4 mb-3">Supported Custom Fields</h3>
+
+        <table class="fields-table">
           <thead>
             <tr>
-              <th style="width: 15%;">Method</th>
-              <th style="width: 20%;">Endpoint</th>
-              <th>Description</th>
+              <th style="width: 25%;">Parameter</th>
+              <th style="width: 75%;">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span class="method-badge">GET</span></td>
-              <td><code>/go</code></td>
-              <td>
-                Any click that goes through FatCoupon Partners redirect domain (redirect.partner.fatcoupon.com) in the
-                correct syntax (as described below) will be monetized via the appropriate affiliate program. If
-                FatCoupon Partner can't monetize a given URL it will simply redirect the user to the original URL
-                without modifying it.
-              </td>
+              <td><span class="field-name">{transactionId}</span></td>
+              <td class="field-description">Order's unique identifier</td>
+            </tr>
+            <tr>
+              <td><span class="field-name">{publisherId}</span></td>
+              <td class="field-description">Publisher company ID</td>
+            </tr>
+            <tr>
+              <td><span class="field-name">{merchantId}</span></td>
+              <td class="field-description">Merchant ID in FatCoupon Partner system</td>
+            </tr>
+            <tr>
+              <td><span class="field-name">{orderNo}</span></td>
+              <td class="field-description">Order number</td>
+            </tr>
+            <tr>
+              <td><span class="field-name">{amount}</span></td>
+              <td class="field-description">Order amount value, in USD</td>
+            </tr>
+            <tr>
+              <td><span class="field-name">{commission}</span></td>
+              <td class="field-description">Order commission value, in USD</td>
+            </tr>
+            <tr>
+              <td><span class="field-name">{clickId}</span></td>
+              <td class="field-description">Click ID from redirect link</td>
+            </tr>
+            <tr>
+              <td><span class="field-name">{status}</span></td>
+              <td class="field-description">Order status: Pending, Payable, Canceled, or Cashed</td>
+            </tr>
+            <tr>
+              <td><span class="field-name">{orderDate}</span></td>
+              <td class="field-description">Order date time in UTC, format: YYYY-MM-DDTHH:mm:ss.sssZ</td>
+            </tr>
+            <tr>
+              <td><span class="field-name">{subId1}</span> to <span class="field-name">{subId5}</span></td>
+              <td class="field-description">Tracking parameters appended in tracking URL</td>
             </tr>
           </tbody>
         </table>
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4>Parameters</h4>
-          <button class="btn btn-outline-primary btn-sm">Cancel</button>
+        <div class="checksum-info">
+          <h5 class="checksum-title">Checksum Security Parameter <span class="badge-required">Recommended</span></h5>
+          <p>The <span class="field-name">{checksum}</span> parameter provides an additional layer of security by
+            generating an MD5 hash of your transaction data combined with a secret key.</p>
+
+          <div class="code-block">
+            <div class="code-comment">// Checksum formula</div>
+            <div>MD5(<span class="code-value">secretKey</span> + '&' + <span class="code-value">transactionId</span> +
+              '&' + <span class="code-value">orderNo</span> + '&' + <span class="code-value">amount</span> + '&' + <span
+                class="code-value">commission</span> + '&' + <span class="code-value">secretKey</span>)</div>
+          </div>
+
+          <p class="mt-2">This ensures that postback requests are authentic and haven't been tampered with during
+            transmission.</p>
         </div>
 
-        <table class="parameters-table">
-          <thead>
-            <tr>
-              <th style="width: 20%;">Name</th>
-              <th style="width: 30%;">Description</th>
-              <th style="width: 15%;">Type</th>
-              <th style="width: 35%;">Example</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <span class="param-name">cid</span>
-                <span class="param-required">required</span>
-              </td>
-              <td>Your Company Id</td>
-              <td><span class="param-type">integer</span><br>(query)</td>
-              <td><span class="param-example">123</span></td>
-            </tr>
-            <tr>
-              <td>
-                <span class="param-name">mid</span>
-              </td>
-              <td>Merchant Id</td>
-              <td><span class="param-type">integer</span><br>(query)</td>
-              <td><span class="param-example">12345</span></td>
-            </tr>
-            <tr>
-              <td>
-                <span class="param-name">url</span>
-                <span class="param-required">required</span>
-              </td>
-              <td>This is the URL you are linking to. The URL should always be unencoded. The Link Wrapper will attempt
-                to convert this URL into a monetized URL, and redirect the user there.</td>
-              <td><span class="param-type">string</span><br>(query)</td>
-              <td><span class="param-example">https://www.nike.com</span></td>
-            </tr>
-            <tr>
-              <td>
-                <span class="param-name">clickId</span>
-              </td>
-              <td>This is an optional user specified parameter used to pass your own internal tracking through FatCoupon
-                Partner' monetization engine.</td>
-              <td><span class="param-type">string</span><br>(query)</td>
-              <td><span class="param-example">YOUR_TRACK_ID</span></td>
-            </tr>
-            <tr>
-              <td>
-                <span class="param-name">subId1</span>
-              </td>
-              <td>Tracking Parameter's which were appended in tracking url.</td>
-              <td><span class="param-type">string</span><br>(query)</td>
-              <td><span class="param-example">subId1</span></td>
-            </tr>
-            <tr>
-              <td>
-                <span class="param-name">subId2</span>
-              </td>
-              <td>Tracking Parameter's which were appended in tracking url.</td>
-              <td><span class="param-type">string</span><br>(query)</td>
-              <td><span class="param-example">subId2</span></td>
-            </tr>
-            <tr>
-              <td>
-                <span class="param-name">subId3</span>
-              </td>
-              <td>Tracking Parameter's which were appended in tracking url.</td>
-              <td><span class="param-type">string</span><br>(query)</td>
-              <td><span class="param-example">subId3</span></td>
-            </tr>
-            <tr>
-              <td>
-                <span class="param-name">subId4</span>
-              </td>
-              <td>Tracking Parameter's which were appended in tracking url.</td>
-              <td><span class="param-type">string</span><br>(query)</td>
-              <td><span class="param-example">subId4</span></td>
-            </tr>
-            <tr>
-              <td>
-                <span class="param-name">subId5</span>
-              </td>
-              <td>Tracking Parameter's which were appended in tracking url.</td>
-              <td><span class="param-type">string</span><br>(query)</td>
-              <td><span class="param-example">subId5</span></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- Parameter Input Section -->
-        <div class="param-input-section">
-          <h4 class="section-title">Test Parameters</h4>
-
-          <div class="input-group">
-            <span class="input-group-text">cid</span>
-            <input type="number" class="form-control" id="cidInput" placeholder="Your Company ID" value="123">
+        <div class="example-section">
+          <h5 class="example-title">Sample Postback URL</h5>
+          <div class="code-block">
+            <div class="code-comment">// Complete example with all parameters</div>
+            <div>https://yourdomain.com/tracking?</div>
+            <div>&nbsp;&nbsp;<span class="code-key">pubId</span>=<span class="code-value">{publisherId}</span></div>
+            <div>&nbsp;&nbsp;<span class="code-key">transId</span>=<span class="code-value">{transactionId}</span></div>
+            <div>&nbsp;&nbsp;<span class="code-key">order</span>=<span class="code-value">{orderNo}</span></div>
+            <div>&nbsp;&nbsp;<span class="code-key">sale</span>=<span class="code-value">{amount}</span></div>
+            <div>&nbsp;&nbsp;<span class="code-key">comm</span>=<span class="code-value">{commission}</span></div>
+            <div>&nbsp;&nbsp;<span class="code-key">click</span>=<span class="code-value">{clickId}</span></div>
+            <div>&nbsp;&nbsp;<span class="code-key">status</span>=<span class="code-value">{status}</span></div>
+            <div>&nbsp;&nbsp;<span class="code-key">date</span>=<span class="code-value">{orderDate}</span></div>
+            <div>&nbsp;&nbsp;<span class="code-key">checksum</span>=<span class="code-value">{checksum}</span></div>
           </div>
-
-          <div class="input-group">
-            <span class="input-group-text">mid</span>
-            <input type="number" class="form-control" id="midInput" placeholder="Merchant ID" value="12345">
-          </div>
-
-          <div class="input-group">
-            <span class="input-group-text">url</span>
-            <input type="text" class="form-control" id="urlInput" placeholder="URL to redirect"
-              value="https://www.nike.com">
-          </div>
-
-          <div class="input-group">
-            <span class="input-group-text">clickId</span>
-            <input type="text" class="form-control" id="clickIdInput" placeholder="Your tracking ID"
-              value="YOUR_TRACK_ID">
-          </div>
-
-          <div class="input-group">
-            <span class="input-group-text">subId1</span>
-            <input type="text" class="form-control" id="subId1Input" placeholder="subId1 value" value="subId1">
-          </div>
-
-          <div class="input-group">
-            <span class="input-group-text">subId2</span>
-            <input type="text" class="form-control" id="subId2Input" placeholder="subId2 value" value="subId2">
-          </div>
-
-          <div class="input-group">
-            <span class="input-group-text">subId3</span>
-            <input type="text" class="form-control" id="subId3Input" placeholder="subId3 value" value="subId3">
-          </div>
-
-          <div class="input-group">
-            <span class="input-group-text">subId4</span>
-            <input type="text" class="form-control" id="subId4Input" placeholder="subId4 value" value="subId4">
-          </div>
-
-          <div class="input-group">
-            <span class="input-group-text">subId5</span>
-            <input type="text" class="form-control" id="subId5Input" placeholder="subId5 value" value="subId5">
-          </div>
-        </div>
-
-        <!-- Execute Section -->
-        <div class="execute-section">
-          <button class="btn btn-primary" id="executeBtn">
-            <i class="ri-play-circle-line me-2"></i>Execute
-          </button>
-        </div>
-
-        <!-- Code Block -->
-        <div class="code-block" id="codeBlock">
-          <div>// Generated API Request URL</div>
-          <div>const url = <span class="code-value"
-              id="generatedUrl">https://redirect.partner.fatcoupon.com/go?cid=123&mid=12345&url=https://www.nike.com</span>;
-          </div>
-          <br>
-          <div>// JavaScript Fetch Example</div>
-          <div>fetch(<span class="code-value">'https://redirect.partner.fatcoupon.com/go'</span>, {</div>
-          <div>&nbsp;&nbsp;method: <span class="code-value">'GET'</span>,</div>
-          <div>&nbsp;&nbsp;headers: {</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">'Content-Type'</span>: <span
-              class="code-value">'application/json'</span>,</div>
-          <div>&nbsp;&nbsp;}</div>
-          <div>})</div>
-          <div>.then(response => response.json())</div>
-          <div>.then(data => console.log(data))</div>
-          <div>.catch(error => console.error(<span class="code-value">'Error:'</span>, error));</div>
-        </div>
-
-        <!-- Response Block -->
-        <div class="response-block" id="responseBlock" style="display: none;">
-          <div>// API Response</div>
-          <div>{</div>
-          <div>&nbsp;&nbsp;<span class="code-key">"status"</span>: <span class="code-value">"success"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="code-key">"redirectUrl"</span>: <span
-              class="code-value">"https://www.nike.com/?affiliate=12345"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="code-key">"message"</span>: <span class="code-value">"URL successfully
-              monetized"</span></div>
-          <div>}</div>
         </div>
       </div>
     </main>
