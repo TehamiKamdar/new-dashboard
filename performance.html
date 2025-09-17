@@ -26,7 +26,68 @@
         <button class="menu-toggle">
           <i class="ri-menu-line"></i>
         </button>
-        <img src="logo.png" alt="" class="dashboard-logo">
+        <div class="dashboard-logo"></div>
+
+        <nav class="header-nav">
+          <div class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="ri-user-smile-line"></i>
+              <span class="nav-text">Advertisers</span>
+            </a>
+          </div>
+
+          <div class="nav-item has-dropdown">
+            <a href="index.html" class="nav-link">
+              <i class="ri-line-chart-fill"></i>
+              <span class="nav-text">Reports</span>
+              <i class="chevron ri-arrow-down-s-line"></i>
+            </a>
+            <ul class="submenu">
+              <li><a href="transactions.html" class="nav-link"><span>Transactions</span></a></li>
+              <li><a href="performance.html" class="nav-link"><span>Daily Performance</span></a></li>
+            </ul>
+          </div>
+
+          <div class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+              <i class="ri-tools-fill"></i>
+              <span class="nav-text">Tools</span>
+              <i class="chevron ri-arrow-down-s-line"></i>
+            </a>
+            <ul class="submenu">
+              <li><a href="link-shortner.html" class="nav-link"><span>Link Shortner</span></a></li>
+            </ul>
+          </div>
+
+          <div class="nav-item has-dropdown">
+            <a href="#" class="nav-link">
+              <i class="ri-code-s-slash-line"></i>
+              <span class="nav-text">Dev Tools</span>
+              <i class="chevron ri-arrow-down-s-line"></i>
+            </a>
+            <ul class="submenu">
+              <li><a href="authentication.html" class="nav-link"><span>Authentication</span></a></li>
+              <li><a href="link-wrapper.html" class="nav-link"><span>Link Wrapper</span></a></li>
+              <li><a href="merchant-api.html" class="nav-link"><span>Merchant API</span></a></li>
+              <li><a href="transaction-api.html" class="nav-link"><span>Transaction API</span></a></li>
+              <li><a href="postback-settings.html" class="nav-link"><span>Postback Settings</span></a></li>
+            </ul>
+          </div>
+
+          <div class="nav-item">
+            <a href="profile.html" class="nav-link">
+              <i class="ri-profile-line"></i>
+              <span class="nav-text">Profile</span>
+            </a>
+          </div>
+
+          <div class="nav-item">
+            <a href="payments.html" class="nav-link">
+              <i class="ri-money-dollar-box-line"></i>
+              <span class="nav-text">Payments</span>
+            </a>
+          </div>
+        </nav>
       </div>
 
       <div class="header-actions">
@@ -39,79 +100,6 @@
 
   <!-- Main Content -->
   <div class="dashboard-container">
-    <!-- Sidebar -->
-    <aside class="dashboard-sidebar">
-      <div class="sidebar-section">
-        <div class="nav-item">
-          <a href="index.html" class="nav-link">
-            <div>
-              <i class="ri-user-smile-line"></i>
-              <span class="nav-text">Advertisers</span>
-            </div>
-          </a>
-        </div>
-        <div class="nav-item has-dropdown open">
-          <a href="#" class="nav-link">
-            <div>
-              <i class="ri-line-chart-fill"></i>
-              <span class="nav-text">Reports</span>
-            </div>
-            <i class="chevron ri-arrow-down-s-line"></i>
-          </a>
-          <ul class="submenu">
-            <li><a href="transactions.html" class="nav-link"><span>Transactions</span></a></li>
-            <li><a href="performance.html" class="nav-link active"><span>Daily Performance</span></a></li>
-          </ul>
-        </div>
-
-        <div class="nav-item has-dropdown">
-          <a href="#" class="nav-link">
-            <div>
-              <i class="ri-tools-fill"></i>
-              <span class="nav-text">Tools</span>
-            </div>
-            <i class="chevron ri-arrow-down-s-line"></i>
-          </a>
-          <ul class="submenu">
-            <li><a href="link-shortner.html" class="nav-link"><span>Link Shortner</span></a></li>
-          </ul>
-        </div>
-
-        <div class="nav-item has-dropdown">
-          <a href="#" class="nav-link">
-            <div>
-              <i class="ri-code-s-slash-line"></i>
-              <span class="nav-text">Dev Tools</span>
-            </div>
-            <i class="chevron ri-arrow-down-s-line"></i>
-          </a>
-          <ul class="submenu">
-            <li><a href="authentication.html" class="nav-link"><span>Authentication</span></a></li>
-            <li><a href="link-wrapper.html" class="nav-link"><span>Link Wrapper</span></a></li>
-            <li><a href="merchant-api.html" class="nav-link"><span>Merchant API</span></a></li>
-            <li><a href="transaction-api.html" class="nav-link"><span>Transaction API</span></a></li>
-            <li><a href="postback-settings.html" class="nav-link"><span>Postback Settings</span></a></li>
-          </ul>
-        </div>
-
-        <div class="nav-item">
-          <a href="profile.html" class="nav-link">
-            <div>
-              <i class="ri-profile-line"></i>
-              <span class="nav-text">Profile</span>
-            </div>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a href="payments.html" class="nav-link">
-            <div>
-              <i class="ri-money-dollar-box-line"></i>
-              <span class="nav-text">Payments</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </aside>
     <div class="sidebar-overlay"></div>
     <!-- Main Content Area -->
     <main class="dashboard-main">
@@ -135,12 +123,12 @@
           </div>
           <!-- Footer Pagination Controls -->
           <div class="d-flex justify-content-between align-items-center mt-3">
-            <div>
+            <div class="d-flex pageBtn">
               <button class="btn btn-sm btn-navigation me-2" id="firstPage">⏮ First</button>
               <button class="btn btn-sm btn-navigation" id="prevPage">◀ Prev</button>
             </div>
             <div id="pageInfo" class="text-primary-light">Showing 0 of 0 records</div>
-            <div>
+            <div class="d-flex pageBtn">
               <button class="btn btn-sm btn-navigation me-2" id="nextPage">Next ▶</button>
               <button class="btn btn-sm btn-navigation" id="lastPage">Last ⏭</button>
             </div>
@@ -203,7 +191,7 @@
     }
 
     document.getElementById("pageInfo").textContent =
-      `Showing ${Math.min(end, data.length)} of ${data.length} records (Page ${page} of ${totalPages})`;
+      `Showing ${Math.min(end, data.length)} of ${data.length} records`;
   }
 
   // Pagination buttons

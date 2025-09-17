@@ -71,7 +71,9 @@ h6 {
   font-family: 'Poppins', sans-serif;
 }
 
-
+li{
+  list-style: none;
+}
 
 /* Header Styles */
 .dashboard-header {
@@ -92,8 +94,9 @@ h6 {
 
 .dashboard-logo {
   height: 50px;
-  width: 200px;
-  background-color: white;
+  width: 220px;
+  background-image: url('logo.png');
+  background-size: cover;
   border-radius: 4px;
 }
 
@@ -452,27 +455,25 @@ td {
 }
 
 @media (max-width: 768px) {
-  .dashboard-sidebar {
-    position: fixed;
-    top: 72px;
-    left: -250px;
-    /* full sidebar width hide */
-    width: 250px;
-    height: calc(100vh - 72px);
-    background: #fff;
-    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
-    transition: left 0.3s ease-in-out;
-    z-index: 1001;
-  }
-
-  /* Sidebar slide in when open */
-  .sidebar-open .dashboard-sidebar {
-    left: 0;
+  .dashboard-main{
+    padding-bottom: 5rem;
   }
 
   .dashboard-logo {
-    height: 25px;
-    width: 100px;
+    height: 50px;
+    width: 220px;
+    background-size: cover;
+    background-image: url('logo.png');
+  }
+
+  .text-primary-light{
+    font-size: .75rem;
+  }
+
+  .pageBtn .btn-sm{
+    height: 35px;
+    width: 50px;
+    font-size: 8px;
   }
 
   /* Overlay behind sidebar */
