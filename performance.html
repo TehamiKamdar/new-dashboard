@@ -27,21 +27,21 @@
 
         <nav class="header-nav">
           <div class="nav-item">
-            <a href="index.html" class="nav-link active">
+            <a href="index.html" class="nav-link">
               <i class="ri-user-smile-line"></i>
               <span class="nav-text">Advertisers</span>
             </a>
           </div>
 
           <div class="nav-item has-dropdown">
-            <a href="index.html" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="ri-line-chart-fill"></i>
               <span class="nav-text">Reports</span>
               <i class="chevron ri-arrow-down-s-line"></i>
             </a>
             <ul class="submenu">
               <li><a href="transactions.html" class="nav-link"><span>Transactions</span></a></li>
-              <li><a href="performance.html" class="nav-link"><span>Daily Performance</span></a></li>
+              <li><a href="performance.html" class="nav-link active"><span>Daily Performance</span></a></li>
             </ul>
           </div>
 
@@ -120,13 +120,13 @@
           <!-- Footer Pagination Controls -->
           <div class="d-flex justify-content-between align-items-center mt-3">
             <div class="d-flex pageBtn">
-              <button class="btn btn-sm btn-navigation me-2" id="firstPage">⏮ First</button>
-              <button class="btn btn-sm btn-navigation" id="prevPage">◀ Prev</button>
+              <button class="btn btn-sm btn-navigation me-2" id="firstPage">⏮ <span class="md-none">First</span></button>
+              <button class="btn btn-sm btn-navigation" id="prevPage">◀ <span class="md-none">Prev</span></button>
             </div>
             <div id="pageInfo" class="text-primary-light">Showing 0 of 0 records</div>
             <div class="d-flex pageBtn">
-              <button class="btn btn-sm btn-navigation me-2" id="nextPage">Next ▶</button>
-              <button class="btn btn-sm btn-navigation" id="lastPage">Last ⏭</button>
+              <button class="btn btn-sm btn-navigation me-2" id="nextPage"><span class="md-none">Next</span> ▶</button>
+              <button class="btn btn-sm btn-navigation" id="lastPage"><span class="md-none">Last</span> ⏭</button>
             </div>
           </div>
         </div>
