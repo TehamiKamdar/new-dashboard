@@ -140,14 +140,14 @@
           </div>
           <!-- Footer Pagination Controls -->
           <div class="d-flex justify-content-between align-items-center mt-3">
-            <div>
-              <button class="btn btn-sm btn-navigation me-2" id="firstPage">⏮ First</button>
-              <button class="btn btn-sm btn-navigation" id="prevPage">◀ Prev</button>
+            <div class="d-flex pageBtn">
+              <button class="btn btn-sm btn-navigation me-2" id="firstPage">⏮ <span class="md-none">First</span></button>
+              <button class="btn btn-sm btn-navigation" id="prevPage">◀ <span class="md-none">Prev</span></button>
             </div>
             <div id="pageInfo" class="text-primary-light">Showing 0 of 0 records</div>
-            <div>
-              <button class="btn btn-sm btn-navigation me-2" id="nextPage">Next ▶</button>
-              <button class="btn btn-sm btn-navigation" id="lastPage">Last ⏭</button>
+            <div class="d-flex pageBtn">
+              <button class="btn btn-sm btn-navigation me-2" id="nextPage"><span class="md-none">Next</span> ▶</button>
+              <button class="btn btn-sm btn-navigation" id="lastPage"><span class="md-none">Last</span> ⏭</button>
             </div>
           </div>
         </div>

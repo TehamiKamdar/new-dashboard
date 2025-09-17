@@ -1545,12 +1545,40 @@ h2 {
     display: block;
     overflow-x: auto;
   }
+
+  .table td{
+    padding: 8px;
+  }
+  
+  .dashboard-main{
+    padding: 1rem;
+    padding-bottom: 5rem;
+  }
 }
 
 @media (max-width: 400px) {
   .pageBtn .btn-sm{
-    height: 10px;
-    width: 35px;
-    font-size: 6px;
+    height: auto;
+    width: fit-content;
+    font-size: 10px;
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
+
+  #pageInfo{
+    font-size: .5rem;
+  }
+
+  .md-none{
+    display: none;
+  }
+
+  .table td{
+    padding: 4px;
+  }
+  
+  .dashboard-main{
+    padding: .5rem;
+    padding-bottom: 5rem;
   }
 }
