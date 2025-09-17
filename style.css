@@ -1546,3 +1546,11 @@ h2 {
     overflow-x: auto;
   }
 }
+
+@media (max-width: 400px) {
+  .pageBtn .btn-sm{
+    height: 10px;
+    width: 35px;
+    font-size: 6px;
+  }
+}
